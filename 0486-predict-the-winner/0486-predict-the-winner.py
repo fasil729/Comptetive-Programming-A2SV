@@ -1,8 +1,4 @@
 class Solution(object):
-    def __init__ (self):
-        
-        self.score_1 = 0
-        self.score_2 = 0
     def PredictTheWinner(self, nums):
         """
         :type nums: List[int]
