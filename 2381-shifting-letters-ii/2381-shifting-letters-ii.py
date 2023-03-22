@@ -20,7 +20,7 @@ class Solution:
                 if end != len(s) - 1: 
                     arr[end + 1] += 1
         for j in range(1, len(arr)):
-            arr[j] += arr[j - 1]
+            arr[j] += arr[j - 1] % 26
         res = ""   
         for ind, shift in enumerate(arr):
                 res += chr(97 + (ord(s[ind]) % 97 + shift) % 26)
