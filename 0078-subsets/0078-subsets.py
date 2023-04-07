@@ -11,7 +11,6 @@ class Solution:
             for ind in range(first, n):
                 
                 arr.append(nums[ind])
-                print(arr, first, nums)
                 backtrack(ind + 1, arr)
                 arr.pop()
                
