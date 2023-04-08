@@ -9,12 +9,12 @@ class Solution:
         
         
         def helper(start, end):
-            if start >= end:
+            if start > end:
                 return
             mid = start + (end - start) // 2
     
-            return TreeNode(nums[mid], helper(start, mid), helper(mid + 1, end))
+            return TreeNode(nums[mid], helper(start, mid - 1), helper(mid + 1, end))
 
-        return helper(0, len(nums))
+        return helper(0, len(nums) - 1)
     
             
