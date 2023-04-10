@@ -3,7 +3,6 @@ class Solution:
         
         n = len(s)
         def helper(start, last):
-            print(start, last, n)
             if start >= n:
                 return True
             val = 0
