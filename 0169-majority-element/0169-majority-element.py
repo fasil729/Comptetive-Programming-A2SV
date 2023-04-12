@@ -4,7 +4,7 @@ class Solution:
         
         def helper(start, end):
             mid = start + (end - start) // 2
-            if start >= end:
+            if start == end:
                 return nums[start]
             left = helper(start, mid)
             right = helper(mid + 1, end )
