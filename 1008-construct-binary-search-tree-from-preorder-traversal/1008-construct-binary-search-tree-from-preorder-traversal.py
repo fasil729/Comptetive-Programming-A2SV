@@ -17,7 +17,7 @@ class Solution:
                 childs.add(next_node)
                 node.left = next_node
             stack.append(next_node)
-            print([i.val for i in stack], next_node.val, val)
+            # print([i.val for i in stack], next_node.val, val)
             
 
             new_node = next_node
@@ -35,7 +35,7 @@ class Solution:
                 # else:
                 #     stack[i], stack[i + 1] = stack[i + 1], stack[i]
                 
-            print([i.val for i in stack], next_node.val)
+            # print([i.val for i in stack], next_node.val)
             node = next_node
         return root
                     
