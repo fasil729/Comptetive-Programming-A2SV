@@ -3,7 +3,7 @@ class Solution:
         res = inf
         arr = [0] * k
         n = len(cookies)
-        cookies.sort(reverse=True)
+        # cookies.sort(reverse=True)
         
         
         def combination(start, maxi):
