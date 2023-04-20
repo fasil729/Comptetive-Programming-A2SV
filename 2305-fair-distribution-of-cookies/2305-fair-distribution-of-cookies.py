@@ -7,6 +7,8 @@ class Solution:
         
         def combination(start, maxi):
             nonlocal res
+            if maxi > res:
+                return
             if start == n:
                 res = min(res, maxi)
                 return
