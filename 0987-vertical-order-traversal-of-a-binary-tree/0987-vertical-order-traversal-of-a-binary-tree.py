@@ -9,28 +9,63 @@
         
 class Solution:
     def verticalTraversal(self, root: Optional[TreeNode]) -> List[List[int]]:
-        
         tree = defaultdict(list)
-        def bfs(root):
-            heap = [(0, root.val, 0, 0, root)]
-            heapq.heapify(heap)
-            diff = 0  # i use to differtite nodes which has equal row, col and val
-            # print(heap)
-            while heap:
-                diff += 1
-                row, val, col, d, curr = heapq.heappop(heap)
-                tree[col].append(val)
-                if curr.left:
-                    heapq.heappush(heap, (row + 1, curr.left.val, col - 1, diff, curr.left))
-                if curr.right:
-                    heapq.heappush(heap, (row + 1, curr.right.val, col + 1, diff, curr.right))
-                # print(heap)
-            return
-        bfs(root)    
+        def dfs(root, col, row):
+            if not root:
+                return
+            
+            tree[col].append((row, root.val))
+            dfs(root.left, col - 1, row + 1)
+            dfs(root.right, col + 1, row + 1)
+        dfs(root, 0, 0)
         res = []
+        
         for key in sorted(tree.keys()):
-            res.append(tree[key])
+            arr = tree[key]
+            arr.sort()
+            new_arr = [val for row, val in arr]
+            res.append(new_arr)
         return res
+           
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        # tree = defaultdict(list)
+        # def bfs(root):
+        #     heap = [(0, root.val, 0, 0, root)]
+        #     heapq.heapify(heap)
+        #     diff = 0  # i use to differtite nodes which has equal row, col and val
+        #     # print(heap)
+        #     while heap:
+        #         diff += 1
+        #         row, val, col, d, curr = heapq.heappop(heap)
+        #         tree[col].append(val)
+        #         if curr.left:
+        #             heapq.heappush(heap, (row + 1, curr.left.val, col - 1, diff, curr.left))
+        #         if curr.right:
+        #             heapq.heappush(heap, (row + 1, curr.right.val, col + 1, diff, curr.right))
+        #         # print(heap)
+        #     return
+        # bfs(root)    
+        # res = []
+        # for key in sorted(tree.keys()):
+        #     res.append(tree[key])
+        # return res
             
             
             
