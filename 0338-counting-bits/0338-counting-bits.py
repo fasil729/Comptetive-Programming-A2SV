@@ -7,7 +7,6 @@ class Solution:
         while num <= n:
             arr.add(num)
             num *= 2
-        print(arr)
         for i in range(1, n + 1):
             if i in arr:
                 j = 0
