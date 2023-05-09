@@ -6,7 +6,7 @@ class Solution:
             for num in nums:
                 tot += ceil(num/divisor)
             return tot <= threshold
-        start, end = 1, 10**6
+        start, end = 1, max(nums)
         while start <= end:
             mid = start + (end - start) // 2
             if helper(mid):
