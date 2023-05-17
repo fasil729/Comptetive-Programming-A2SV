@@ -9,11 +9,9 @@ class Solution:
         def dfs(node):
             if node == destination:
                 return True
-            if node in visited:
-                return False
             visited.add(node)
             for neigh in adjacency_list[node]:
-                if dfs(neigh):
+                if not neigh in visited and dfs(neigh):
                     return True
             return False
         return dfs(source)
