@@ -1,27 +1,45 @@
+class UnionFind:
+    def __init__(self, size):
+        self.root = {i:i for i in range(size)}
+        self.rank = {i:1 for i in range(size)}
+        
+    def find(self, x):
+        if x == self.root[x]:
+            return x
+        
+        self.root[x] = self.find(self.root[x])
+        return self.root[x]
+        
+    def union(self, x, y):
+        rootX = self.find(x)
+        rootY = self.find(y)
+        
+        if rootX != rootY:
+            if self.rank[x] > self.rank[y]:
+                self.root[rootY] = rootX
+                self.rank[x] += self.rank[y]
+            else:
+                self.root[rootX] = rootY
+                self.rank[rootX] += self.rank[rootY]
+
+
+
+
+
 class Solution:
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
         
-        graph = defaultdict(list)
-        for i in range(len(isConnected)):
-                for j in range(len(isConnected[0])):
-                    if isConnected[i][j]:
-                        graph[i].append(j)
-                        graph[j].append(i)
+        # Approach the question using UNIONFIND method
+        n = len(isConnected)
+        dsu = UnionFind(n)
         
-        visited = set()
-        def dfs(node):
-            if node in visited:
-                return
-            visited.add(node)
-            for neigh in graph[node]:
-                dfs(neigh)
-        res = 0
-        for node in graph:
-            if node in visited:
-                continue
-            dfs(node)
-            res += 1
-        return res
+        ans = n
+        for i in range(n):
+            for j in range(n):
+                if isConnected[i][j] and dsu.find(i) != dsu.find(j):
+                    ans -= 1
+                    dsu.union(i, j)
+        return ans
             
 
         
