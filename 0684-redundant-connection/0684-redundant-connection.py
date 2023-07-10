@@ -25,6 +25,7 @@ class UnionFind:
 
 class Solution:
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
+        # approach the question using union find
         n = len(edges)
         uf = UnionFind(n)
         
