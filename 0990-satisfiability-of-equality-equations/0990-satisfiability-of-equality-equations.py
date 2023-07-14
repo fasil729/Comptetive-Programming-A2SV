@@ -37,12 +37,8 @@ class Solution:
         for equation in equations:
             if equation[1] == "=":
                 uf.union(equation[0], equation[3])
-            elif uf.find(equation[0]) ==  uf.find(equation[3]): # check if the two letters are specifed equal before 
-                return False
         for equation in equations:
-            if equation[1] == "=":
-                uf.union(equation[0], equation[3])
-            elif uf.find(equation[0]) ==  uf.find(equation[3]): # check if the two letters are specifed equal before 
+            if equation[1] == "!" and uf.find(equation[0]) ==  uf.find(equation[3]): # check if the two letters are specifed equal before 
                 return False
         return True
         
