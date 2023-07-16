@@ -1,4 +1,4 @@
-class Solution:
+class Solution2:
     def maximumElementAfterDecrementingAndRearranging(self, arr: List[int]) -> int:
         count = defaultdict(int)
         greaterl = 0
@@ -20,7 +20,7 @@ class Solution:
         return ans
 
 
-class Solution2:
+class Solution:
     def maximumElementAfterDecrementingAndRearranging(self, arr: List[int]) -> int:
         arr.sort()
         maxi = 0
