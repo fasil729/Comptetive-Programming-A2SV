@@ -3,7 +3,6 @@ class Solution:
         if len(nums) <= 4:
             return 0
         nums.sort()
-        print(nums, nums[-4])
         res = float("inf")
         start, last = 0, -4
         while start <= 3:
