@@ -1,5 +1,5 @@
 class Solution:
-    def myPow2(self, x: float, n: int) -> float:
+    def myPow(self, x: float, n: int) -> float:
         # iterative approach
         if n == 0:
             return 1
@@ -19,7 +19,7 @@ class Solution:
         return res
     
     
-    def myPow(self, x: float, n: int) -> float:
+    def myPow2(self, x: float, n: int) -> float:
         #recursive approach
         if n <= 1:
             return x ** n
