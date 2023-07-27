@@ -4,8 +4,7 @@ class Solution:
         left, right = 0, sum(batteries)
         
         while left < right:
-            print(left, right)
-            mid = ((right + left) // 2)+ 1
+            mid = ((right + left) // 2) + 1
             if self.is_possible(n, batteries, mid):
                 left = mid
             else:
