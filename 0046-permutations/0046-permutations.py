@@ -3,18 +3,20 @@ class Solution:
         dictionary = Counter(nums)
         result = []
         
-        def backtrack(dictionary, leng, arr):
-            if len(arr) == leng:
+        def backtrack(dictionary, arr):
+            if len(arr) == len(nums):
                 result.append(arr.copy())
-                
-            for key, val in dictionary.items():
-                if val > 0:
-                    dictionary[key] -= 1
-                    arr.append(key)
-                    backtrack(dictionary, leng, arr)
-                    dictionary[key] += 1
+            
+            for k in dictionary:
+                if dictionary[k] != 0:
+                    dictionary[k] -= 1
+                    arr.append(k)
+                    backtrack(dictionary, arr)
                     arr.pop()
-        backtrack(dictionary, len(nums), [])
+                    dictionary[k] += 1
+        backtrack(dictionary, [])
         return result
+                
+            
             
                     
