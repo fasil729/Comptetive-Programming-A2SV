@@ -1,6 +1,6 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        
+        #top_down approach
         word = set(wordDict)
         
         @lru_cache
