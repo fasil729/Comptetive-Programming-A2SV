@@ -7,7 +7,7 @@ class Solution:
 
         while left <= right:
             mid = (left + right) // 2
-            mid_row, mid_col = divmod(mid, n)
+            mid_row, mid_col = mid // n, mid % n
 
             if matrix[mid_row][mid_col] == target:
                 return True
