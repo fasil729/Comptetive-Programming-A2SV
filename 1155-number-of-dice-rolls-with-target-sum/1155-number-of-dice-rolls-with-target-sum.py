@@ -1,5 +1,5 @@
 class Solution:
-    def numRollsToTarget1(self, n: int, k: int, target: int) -> int:
+    def numRollsToTarget(self, n: int, k: int, target: int) -> int:
         # top down dp
         @cache
         def dp(n, target):
@@ -13,7 +13,7 @@ class Solution:
                     res += dp(n - 1, target - j)
             return res
         return dp(n, target) % (10 ** 9 + 7)
-    def numRollsToTarget(self, n: int, k: int, target: int) -> int:
+    def numRollsToTarget2(self, n: int, k: int, target: int) -> int:
         
         def get(t, n):
             if (t, n) in dp:
