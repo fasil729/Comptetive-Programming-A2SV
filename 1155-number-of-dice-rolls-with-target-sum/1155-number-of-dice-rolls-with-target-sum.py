@@ -32,6 +32,8 @@ class Solution:
                     if d <= t and n >= c: 
 
                         dp[(t, c)] += get(t - d, c - 1)
+                    else:
+                        break
         return dp[(target, n)] % (10 ** 9 + 7)
             
     
