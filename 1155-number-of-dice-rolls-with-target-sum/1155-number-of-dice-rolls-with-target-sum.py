@@ -29,7 +29,7 @@ class Solution:
                 for c in range(0, n + 1):
                     if not (t, c) in dp:
                         dp[(t, c)] = 0
-                    if d <= t and n >= c: 
+                    if d <= t: 
 
                         dp[(t, c)] += get(t - d, c - 1)
                     else:
