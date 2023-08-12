@@ -1,19 +1,19 @@
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
-        if not obstacleGrid or not obstacleGrid[0] or obstacleGrid[0][0] == 1:
-            return 0
+        n = len(obstacleGrid)
+        m = len(obstacleGrid[0])
+        # TOP DOWN DP APPROACH
+        @cache
+        def dp(row, col):
+            if row == (n - 1) and col == (m - 1) and not obstacleGrid[row][col]:
+                return 1
+            if row == n or col == m:
+                return 0
+            if obstacleGrid[row][col] == 1:
+                return 0
+            
+            return dp(row + 1, col) + dp(row, col + 1)
         
-        m, n = len(obstacleGrid), len(obstacleGrid[0])
-        
-        previous = [0] * n
-        current = [0] * n
-        previous[0] = 1
-        
-        for i in range(m):
-            current[0] = 0 if obstacleGrid[i][0] == 1 else previous[0]
-            for j in range(1, n):
-                current[j] = 0 if obstacleGrid[i][j] == 1 else current[j-1] + previous[j]
-            previous[:] = current
-        
-        return previous[n-1]
+        return dp(0, 0)
+       
         
