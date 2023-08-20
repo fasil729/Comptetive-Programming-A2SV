@@ -43,8 +43,7 @@ class Solution:
                     queue.append(neigh)
         if len(visited) != len(item_graph):
             return []
-        print(groups)
-        print(item_graph)
+        
         # implement topological sort for group_graph
         visited = set()
         ans = []
