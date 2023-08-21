@@ -6,4 +6,11 @@ class Solution:
             for j in range(i + 1, n):
                 if nums[i] + nums[j] == target:
                     return [i, j]
+        # hash table approach
+        dic = {nums:i for i in range(n)}
+        
+        for ind in range(n):
+            diff = target - num[ind]
+            if diff in dic:
+                return [ind, dic[diff]]
         
