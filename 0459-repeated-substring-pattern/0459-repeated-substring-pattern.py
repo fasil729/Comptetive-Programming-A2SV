@@ -6,7 +6,7 @@ class Solution:
                 temp += char
                 c = len(temp)
 
-                if temp + (n  - c) // c * temp == s:
+                if n // c * temp == s:
                     return True
         return False
         
