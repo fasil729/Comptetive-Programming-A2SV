@@ -12,3 +12,4 @@ class Solution:
                 last = j 
     
         return res
+    
