@@ -17,7 +17,7 @@ class Solution:
                         
             return res
         return dp(0)
-    def minExtraChar(self, s: str, dictionary: List[str]) -> int:
+    def minExtraChar2(self, s: str, dictionary: List[str]) -> int:
         n, dictionary_set = len(s), set(dictionary)
         @cache
         def dp(start):
@@ -33,5 +33,17 @@ class Solution:
             return ans
             
         return dp(0)
-                
+    
+    def minExtraChar(self, s: str, dictionary: List[str]) -> int:
+        # bottom up dp approach
+        n, dictionary_set = len(s), set(dictionary)
+        dp = {n:0}
+        for i in range(n - 1, -1, -1):
+            dp[i] = dp[i + 1] + 1
+            for j in range(i, n):
+                word = s[i: j + 1]
+                if word in dictionary_set:
+                    dp[i] = min(dp[i], dp[j + 1])
+        return dp[0]
+            
         
