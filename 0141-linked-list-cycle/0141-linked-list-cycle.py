@@ -5,7 +5,8 @@
 #         self.next = None
 
 class Solution:
-    def hasCycle(self, head: Optional[ListNode]) -> bool:
+    def hasCycle1(self, head: Optional[ListNode]) -> bool:
+        # brute force approach
         visited = set()
         curr = head
         while curr and curr not in visited:
@@ -15,8 +16,16 @@ class Solution:
         if curr:
             return True
         return False
-        # print(pos[0])
-        # if pos == -1:
-        #     return False
-        # return True
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        if not head:
+            return False
+        slow, fast = head, head.next
+        while fast:
+            if fast == slow or fast.next == slow:
+                return True
+            if not fast.next:
+                return False
+            fast = fast.next.next
+            slow = slow.next
+        return False
         
