@@ -23,7 +23,7 @@ class Solution:
             return res if res != inf else -1
         return dp(startFuel, 1)
     
-    def minRefuelStops(self, target: int, startFuel: int, stations: List[List[int]]) -> int:
+    def minRefuelStops2(self, target: int, startFuel: int, stations: List[List[int]]) -> int:
         # dp bottom up
         dp = defaultdict(int)
         dp[0] = startFuel
@@ -35,5 +35,24 @@ class Solution:
             if dist >= target:
                 return k
         return -1
-        
+    
+    def minRefuelStops(self, target, tank, stations):
+        # greedy heap
+        pq = []  # A maxheap is simulated using negative values
+        stations.append((target, float('inf')))
+
+        ans = prev = 0
+        for location, capacity in stations:
+            tank -= location - prev
+            while pq and tank < 0:  # must refuel in past
+                tank += -heapq.heappop(pq)
+                ans += 1
+            if tank < 0: return -1
+            heapq.heappush(pq, -capacity)
+            prev = location
+
+        return ans
+    
+    
+    
             
