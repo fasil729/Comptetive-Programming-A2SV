@@ -1,12 +1,17 @@
 class Solution:
     def removeDuplicateLetters(self, s: str) -> str:
-        letters = Counter(s)
+        count = Counter(s)
+        ans = ""
         stack = []
+        visited = set()
         for char in s:
-            letters[char] -= 1
-            if char in stack:
+            count[char] -= 1
+            if char in visited:
                 continue
-            while stack and stack[-1] > char and letters[stack[-1]]:
+            while stack and stack[-1] > char and count[stack[-1]] != 0:
+                visited.remove(stack[-1])
                 stack.pop()
             stack.append(char)
+            visited.add(char)
+            
         return "".join(stack)
