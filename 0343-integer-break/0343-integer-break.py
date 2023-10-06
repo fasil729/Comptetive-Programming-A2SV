@@ -1,14 +1,12 @@
 class Solution:
     def integerBreak(self, n: int) -> int:
+        if n <= 3:
+            return n - 1
         
+        if n % 3 == 0:
+            return 3 ** (n // 3)
         
-        @cache
-        def dp(n):
-            if n == 1:
-                return 1
-            ans = 1
-            for i in range(1, n):
-                ans = max(ans, i * (n - i))
-                ans = max(ans, i * dp(n - i))
-            return ans
-        return dp(n)
+        if n % 3 == 1:
+            return 3 ** (n // 3 - 1) * 4
+        
+        return 3 ** (n // 3) * 2
