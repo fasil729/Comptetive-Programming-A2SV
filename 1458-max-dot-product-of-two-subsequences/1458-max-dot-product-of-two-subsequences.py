@@ -2,14 +2,15 @@ class Solution:
     def maxDotProduct(self, nums1: List[int], nums2: List[int]) -> int:
         n = len(nums1)
         m = len(nums2)
-        
+        # top down approach
         @cache
         def dp(ind1, ind2):
             if ind1 >= n or ind2 >= m:
                 return 0
-            ans =  max(dp(ind1 + 1, ind2), dp(ind1, ind2 + 1))
             prod = nums1[ind1] * nums2[ind2]
-            ans = max(ans, dp(ind1 + 1, ind2 + 1) + prod)
+            ans = dp(ind1 + 1, ind2 + 1) + prod
+            return max(ans, dp(ind1 + 1, ind2), dp(ind1, ind2 + 1))
+            
                 
             
             
