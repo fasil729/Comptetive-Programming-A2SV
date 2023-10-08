@@ -7,7 +7,7 @@ class Solution:
         def dp(ind1, ind2):
             if ind1 >= n or ind2 >= m:
                 return 0
-            ans =  max(dp(ind1 + 1, ind2 + 1), dp(ind1 + 1, ind2), dp(ind1, ind2 + 1))
+            ans =  max(dp(ind1 + 1, ind2), dp(ind1, ind2 + 1))
             prod = nums1[ind1] * nums2[ind2]
             ans = max(ans, dp(ind1 + 1, ind2 + 1) + prod)
                 
