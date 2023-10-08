@@ -25,7 +25,7 @@ class Solution:
         # bottom up approach
         m, n = len(nums2), len(nums1)
         prev_dp = [0] * (m + 1)
-        dp = [0] * (m + 1)
+        # dp = [0] * (m + 1)
         for i in range(n - 1, -1, -1):
             dp = [0] * (m + 1)
             for j in range(m - 1, -1, -1):
