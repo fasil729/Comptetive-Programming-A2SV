@@ -1,12 +1,9 @@
 class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
-        
-        @lru_cache
+        n = len(cost)
+        @cache
         def dp(index):
-            if index >= len(cost):
+            if index >= n:
                 return 0
-            
-            return cost[index] + min(dp(index + 1), dp(index + 2))
-        
-        
-        return min(dp(0) , dp(1))
+            return min(dp(index + 1), dp(index + 2)) + cost[index]
+        return min(dp(0), dp(1))
