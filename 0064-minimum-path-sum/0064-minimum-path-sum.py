@@ -1,14 +1,14 @@
 class Solution:
     def minPathSum(self,grid:List[List[int]])->int:
-        @lru_cache(None)
-        def fn(i,j):
-            if i==0 and j==0:
-                return grid[i][j]
-
-            if i<0 or j<0:
-                return inf
-
-            return grid[i][j]+min(fn(i-1,j),fn(i,j-1))
-
-        return fn(len(grid)-1,len(grid[0])-1)  
+        n, m = len(grid), len(grid[0])
+        def inbound(r, c):
+            return 0 <= r < n and 0 <= c < m
         
+        @cache
+        def dp(row, col):
+            if not inbound(row, col):
+                return float("inf")
+            if row == n - 1 and col == m - 1:
+                return grid[row][col]
+            return min(dp(row + 1, col), dp(row, col + 1)) + grid[row][col]
+        return dp(0, 0)
