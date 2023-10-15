@@ -20,25 +20,25 @@ class Solution:
         return dp(0, steps)
     
     def numWays(self, steps: int, arrLen: int) -> int:
-        # bottom up dp approach
+        # bottom up dp approach with minimized space complexity
         mod = 10 ** 9 + 7
-        def get_dp(ind, step):
-            if (ind, step) in dp:
-                return dp[(ind, step)] % mod
-            return 0
+        arrLen = min(steps + 1, arrLen)
+        prev_dp = [0] * arrLen
+        prev_dp[0] = 1
         
-        dp = {(0, 0):1}
         for step in range(1, steps + 1):
-            for ind in range(0, steps + 1):
+            dp = []
+            for ind in range(0, arrLen):
                 
                 ans = 0
                 if ind > 0:
-                    ans += get_dp(ind - 1, step - 1)
+                    ans += prev_dp[ind - 1]
                 if ind < arrLen - 1:
-                    ans += get_dp(ind + 1, step - 1)
-                ans += get_dp(ind, step - 1)
-                dp[(ind, step)] = ans
-        return get_dp(0, steps)
+                    ans += prev_dp[ind + 1]
+                ans += prev_dp[ind]
+                dp.append(ans % mod)
+            prev_dp = dp
+        return dp[0]
                 
                 
             
