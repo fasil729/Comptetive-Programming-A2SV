@@ -1,5 +1,6 @@
 class Solution:
-    def numWays(self, steps: int, arrLen: int) -> int:
+    def numWays1(self, steps: int, arrLen: int) -> int:
+        # top down dp approach
         mod = 10 ** 9 + 7
         
         @cache
@@ -17,4 +18,29 @@ class Solution:
             return (left + stay + right) % mod
         
         return dp(0, steps)
+    
+    def numWays(self, steps: int, arrLen: int) -> int:
+        # bottom up dp approach
+        mod = 10 ** 9 + 7
+        def get_dp(ind, step):
+            if (ind, step) in dp:
+                return dp[(ind, step)] % mod
+            return 0
+        
+        dp = {(0, 0):1}
+        for step in range(1, steps + 1):
+            for ind in range(0, steps + 1):
+                
+                ans = 0
+                if ind > 0:
+                    ans += get_dp(ind - 1, step - 1)
+                if ind < arrLen - 1:
+                    ans += get_dp(ind + 1, step - 1)
+                ans += get_dp(ind, step - 1)
+                dp[(ind, step)] = ans
+        return get_dp(0, steps)
+                
+                
+            
+        
         
