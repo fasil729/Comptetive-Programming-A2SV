@@ -1,5 +1,6 @@
 class Solution:
-    def minimumTime(self, n: int, relations: List[List[int]], time: List[int]) -> int:
+    def minimumTime1(self, n: int, relations: List[List[int]], time: List[int]) -> int:
+        # topological sort approach
         # consturct graph
         graph = [[] for i in range(n)]
         indegree = [0] * n
@@ -11,7 +12,6 @@ class Solution:
         # perform topological sort
         ans = max(time)
         stack = [i for i in range(n) if indegree[i] == 0]
-        prev_maxi = 0
         maxTime = [time[i] for i in range(n)]
         while stack:
             new_stack = []
@@ -26,6 +26,26 @@ class Solution:
                         new_stack.append(neigh)
             stack = new_stack
         return ans 
+
+    def minimumTime(self, n: int, relations: List[List[int]], time: List[int]) -> int:
+        # dfs with memoization approach
+        @cache
+        def dfs(node):
+            if not graph[node]:
+                return time[node]
+            ans = 0
+            for neigh in graph[node]:
+                ans = max(ans, dfs(neigh))
             
-            
+            return ans + time[node]
+        # consturct graph
+        graph = [[] for i in range(n)]
+        for prev, nex in relations:
+            graph[prev - 1].append(nex - 1)
+        
+        ans = 0
+        for i in range(n):
+            ans = max(ans, dfs(i))
+        return ans
+        
         
