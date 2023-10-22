@@ -19,6 +19,7 @@ class Trie:
             
             cur = cur.children[ind]
             cur.count += 1
+            
         
     def scoreSum(self, word: str):
         cur = self.root
