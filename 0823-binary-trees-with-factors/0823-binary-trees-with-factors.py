@@ -1,14 +1,15 @@
 class Solution:
-    def numFactoredBinaryTrees(self, arr: List[int]) -> int:
+    def numFactoredBinaryTrees1(self, arr: List[int]) -> int:
+        # top down dp
         arr = set(arr)
         mod = 10 ** 9 + 7
         @cache
-        def dp(root):   # [2, 4]   root = 4   dp [2: 1, 4: 2] 1 + 2 = 3
-            ans = 1     # ans = 1
+        def dp(root):  
+            ans = 1     
             
-            for child in arr:  # 2, 4
-                div = int(root/child)  # div = 2
-                if root % child == 0 and div in arr:  # 4 % 2 == 0 and 2 in arr
+            for child in arr:  
+                div = int(root/child)  
+                if root % child == 0 and div in arr:  
                     ans += dp(child) * dp(div)
             return ans % mod  # 2
         ans = 0
@@ -17,5 +18,27 @@ class Solution:
             
         
         return ans % mod
+    def numFactoredBinaryTrees(self, arr: List[int]) -> int:
+        # bottom up dp
+        n = len(arr)
+        mod = 10 ** 9 + 7
+        arr.sort(reverse=True)
+        
+        dp = {}
+        
+        for i in range(n - 1, -1, -1):
+            dp[arr[i]] = 1
+            for j in range(i + 1, n):
+                div = int(arr[i] / arr[j])
+                if arr[i] % arr[j] == 0 and div in dp:
+                    dp[arr[i]] += dp[arr[j]] * dp[div]
+                    
+        ans = 0
+        for val in dp.values():
+            ans += val 
+            
+        return ans % mod
+        
+    
                     
         
