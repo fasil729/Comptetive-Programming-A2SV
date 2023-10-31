@@ -9,16 +9,16 @@ class Solution:
             indegree[cou] += 1
             
         queue = [i for i in range(numCourses) if indegree[i] == 0]
-        visited = set()
+    
         while queue:
             new_queue = []
             for node in queue:
-                visited.add(node)
+                numCourses -= 1
                 for neigh in graph[node]:
                     indegree[neigh] -= 1
                     if indegree[neigh] == 0:
                         new_queue.append(neigh)
             queue = new_queue
         
-        return len(visited) == numCourses
+        return numCourses == 0
         
