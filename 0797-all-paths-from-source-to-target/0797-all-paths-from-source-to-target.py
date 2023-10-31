@@ -8,10 +8,7 @@ class Solution:
             if node == n - 1:
                 res.append(path.copy())
                 return
-#             if node in visited:
-#                 return
-            
-#             visited.add(node)   
+
             for neigh in graph[node]:
                 path.append(neigh)
                 dfs(neigh)
