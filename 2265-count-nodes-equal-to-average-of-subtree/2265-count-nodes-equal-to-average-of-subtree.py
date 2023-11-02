@@ -7,16 +7,21 @@
 class Solution:
     def averageOfSubtree(self, root: Optional[TreeNode]) -> int:
         
-        def helper(root):
+        
+        def dfs(root):
             if not root:
                 return 0, 0, 0
-            res_l, sum_left, n_l = helper(root.left) 
-            res_r, sum_right, n_r = helper(root.right)
-            n = n_l + n_r + 1
-            res = res_l + res_r
-            tot = sum_left + sum_right + root.val 
-            new_av = tot // n
-            if new_av == root.val:
-                res += 1
-            return res, tot, n
-        return helper(root)[0]
+            
+            left_sum, left, left_count = dfs(root.left)
+            right_sum, right, right_count = dfs(root.right)
+            
+            ans = left_count + right_count
+            num = left + right + 1
+            tot = left_sum + right_sum + root.val
+            avg = tot // num
+            if root.val == avg:
+                ans += 1
+            return tot, num, ans
+        
+        return dfs(root)[2]
+        
