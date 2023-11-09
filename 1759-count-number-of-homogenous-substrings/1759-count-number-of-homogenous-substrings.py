@@ -9,7 +9,7 @@ class Solution:
             if ind == 0 or s[ind] != s[ind - 1]:
                 count = 0
             count += 1
-            ans += count
+            ans = (ans + count) % mod
             
         return ans % mod
         
