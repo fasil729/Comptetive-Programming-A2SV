@@ -1,15 +1,16 @@
 class Solution:
     def countHomogenous(self, s: str) -> int:
-        mod = 10 ** 9 + 7
-        count = 0
-        n = len(s)
         ans = 0
-        
-        for ind in range(n):
-            if ind == 0 or s[ind] != s[ind - 1]:
-                count = 0
-            count += 1
-            ans = (ans + count) % mod
+        curr_streak = 0
+        MOD = 10 ** 9 + 7
+
+        for i in range(len(s)):
+            if i == 0 or s[i] == s[i - 1]:
+                curr_streak += 1
+            else:
+                curr_streak = 1
             
-        return ans % mod
+            ans = (ans + curr_streak) % MOD
+        
+        return ans
         
