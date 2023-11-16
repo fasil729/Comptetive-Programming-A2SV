@@ -1,5 +1,5 @@
 class Solution:
-    def findDifferentBinaryString(self, nums: List[str]) -> str:
+    def findDifferentBinaryString2(self, nums: List[str]) -> str:
         ba
         n = len(nums)
         nums = set(nums)
