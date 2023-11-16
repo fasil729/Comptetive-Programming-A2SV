@@ -1,27 +1,29 @@
 class Solution:
     def decodeString(self, s: str) -> str:
-        n = len(s)
-        i = 0
         
-        def helper(ind):
-            nonlocal i
-            res = ""
-            i = ind
-            while i < n:
-                num = 0
-                while "0" <= s[i] <= "9":
-                    num = (num * 10) + int(s[i])
-                    i += 1
-                if s[i] == "[":
-                    i += 1
-                    res += int(num) * helper(i)
-                elif s[i] == "]":
-                    i += 1
-                    break
-                else:
-                    res += s[i]
-                    i += 1
-            return res   
-        return helper(0)
-            
+        stack = []
+        ans = ""
+        for char in s:
+            if char == "]":
+                st = ""
+                while stack and stack[-1] != "[":
+                    st += stack.pop()[::-1]
+                st = st[::-1]
+                stack.pop()
+                num = ""
+                while stack and "0" <= stack[-1] <= "9":
+                    num += stack.pop()
+                num = num[::-1]  
+                stack.append(int(num) * st)
+            else:
+                stack.append(char)
+        for char in stack:
+            ans += char
+        
+        return ans
+                
+                
+                
+                
+        
         
