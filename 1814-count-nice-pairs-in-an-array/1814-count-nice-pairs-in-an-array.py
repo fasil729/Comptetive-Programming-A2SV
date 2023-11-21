@@ -11,9 +11,10 @@ class Solution:
             diff[num - rev(num)] += 1
             
         ans = 0
-        for num in nums:
-            ans += diff[num - rev(num)] - 1
+        for num in diff:
+            val = diff[num]
+            ans += val * (val - 1) // 2
             
-        return ans // 2 % mod
+        return ans % mod
             
         
