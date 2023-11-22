@@ -1,5 +1,5 @@
 class Solution:
-    def findDiagonalOrder(self, nums: List[List[int]]) -> List[int]:
+    def findDiagonalOrder2(self, nums: List[List[int]]) -> List[int]:
         n = len(nums)
         row_leng = [len(nums[i]) for i in range(n)]
         
@@ -20,5 +20,17 @@ class Solution:
                     queue.append((n_r, n_c))
         return ans
              
-            
+    def findDiagonalOrder(self, nums: List[List[int]]) -> List[int]:
+        n = len(nums)
+        arr = []
+        for row in range(n):
+            col = 0
+            for num in nums[row]:
+                arr.append((col, row))
+                col += 1
+        arr.sort(key=lambda x: (x[0] + x[1], x))
+        ans = []
+        for col, row in arr:
+            ans.append(nums[row][col])
+        return ans
         
