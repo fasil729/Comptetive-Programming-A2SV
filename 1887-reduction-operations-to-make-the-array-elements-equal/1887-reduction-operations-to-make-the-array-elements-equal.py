@@ -1,13 +1,13 @@
 class Solution:
     def reductionOperations(self, nums: List[int]) -> int:
-        count = Counter(nums)
+        nums.sort(reverse=True)
         ans = 0
         n = len(nums)
-        prev = 0
-        for num, val in sorted(count.items())[n:0:-1]:
-            # print(num, val)
-            prev += val
-            ans += prev
+        prev = 1
+        for ind in range(1, n):
+            if nums[ind] != nums[ind - 1]:
+                ans += prev
+            prev += 1
         return ans
         
         
