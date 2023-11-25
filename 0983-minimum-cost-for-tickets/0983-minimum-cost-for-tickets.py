@@ -1,6 +1,9 @@
 class Solution:
     def mincostTickets(self, days: List[int], costs: List[int]) -> int:
         n = len(days)
+        
+        
+        # top down dp approach
         @cache
         def dp(ind, max_day):
             if ind == n:
@@ -14,4 +17,14 @@ class Solution:
             return min(ans, dp(ind + 1, day) + costs[0], dp(ind + 1, day + 6) + costs[1], dp(ind + 1, day + 29) + costs[2])
         
         return dp(0, 0)
+    
+#     def mincostTickets(self, days: List[int], costs: List[int]) -> int:
+#         n = len(days)
+        
+        
+#         # bottom up dp approach
+#         maxi = max
+#         dp = []
+        
+        
         
