@@ -18,7 +18,7 @@ class Solution:
         
         return dp(0, 0)
     
-    def mincostTickets2(self, days: List[int], costs: List[int]) -> int:
+    def mincostTickets(self, days: List[int], costs: List[int]) -> int:
         n = len(days)
         
         
@@ -37,13 +37,13 @@ class Solution:
                 if max_day >= day:
                     dp[index] = min(dp[index], prev[index])
                 
-                new_day = index   
+                new_day = day   
                 one =  prev[index] + costs[0]
                 
-                new_day = min(index + 6, maxi)
+                new_day = min(day + 6, maxi)
                 seven =  prev[new_day] + costs[1]
                 
-                new_day = min(index + 29, maxi)
+                new_day = min(day + 29, maxi)
                 thirty =  prev[new_day] + costs[2]
                 
                 dp[index] = min(dp[index], one, seven, thirty)
