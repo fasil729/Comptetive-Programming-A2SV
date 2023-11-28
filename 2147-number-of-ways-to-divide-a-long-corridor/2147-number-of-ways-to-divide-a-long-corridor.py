@@ -13,13 +13,13 @@ class Solution:
         for letter in corridor:
             if letter == "S" and count == 2:
                 count = 0
-                ans *= possible
+                ans = ans * possible % MOD
                 possible = 0
             if letter == "S":
                 count += 1
             if count == 2:
                 possible += 1
-        return ans % MOD
+        return ans
             
             
         
