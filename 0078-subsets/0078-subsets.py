@@ -11,11 +11,11 @@ class Solution:
             visited.add(mask)
             
             for i in range(n):
-                if mask & 1 << i == 0:
+                if mask & 1 << i:
                     sub.append(nums[i])
                     backtrack(mask ^ 1 << i, sub)
                     sub.pop()
             return
-        backtrack(0, [])
+        backtrack((2 ** n) - 1, [])
         return ans
         
