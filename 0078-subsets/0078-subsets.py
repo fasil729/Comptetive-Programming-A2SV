@@ -1,20 +1,21 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        res= []
-        arr = []
+        visited = set()
+        ans = []
         n = len(nums)
-        def backtrack(first, arr):
-            if first == n:
-                res.append(arr.copy())
+        
+        def backtrack(mask, sub):
+            if mask in visited:
                 return
-            res.append(arr.copy())
-            for ind in range(first, n):
-
-                arr.append(nums[ind])
-                backtrack(ind + 1, arr)
-                # print(arr, res, ind, first)
-                arr.pop()
-               
-        backtrack(0, arr)
-        return res
+            ans.append(sub.copy())
+            visited.add(mask)
             
+            for i in range(n):
+                if mask & 1 << i:
+                    sub.append(nums[i])
+                    backtrack(mask ^ 1 << i, sub)
+                    sub.pop()
+            return
+        backtrack((2 ** n) - 1, [])
+        return ans
+        
