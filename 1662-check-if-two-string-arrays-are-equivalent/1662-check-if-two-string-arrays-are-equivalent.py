@@ -30,6 +30,6 @@ class Solution:
                 ind2 += 1
                 sub2 = 0
        
-        return ind1 == n and ind2 == m and sub1 == sub2 == 0
+        return ind1 == n and ind2 == m
             
         
