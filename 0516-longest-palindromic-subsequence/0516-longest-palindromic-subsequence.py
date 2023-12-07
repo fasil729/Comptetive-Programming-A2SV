@@ -15,28 +15,30 @@ class Solution:
         
         return dp(0, n - 1)
     
-    def longestPalindromeSubseq2(self, s: str) -> int:
+    def longestPalindromeSubseq(self, s: str) -> int:
         n = len(s)
         
-        dp = [0] * n
+        dp = [1] * n
         for start in range(n - 1, -1, -1):
-            prev = dp
+            prev = dp.copy()
             for end in range(start + 1, n):
                 if s[start]  == s[end]:
-                    dp[end] = prev[end - 1] + 2
+                    dp[end] = 2
+                    if start + 1 != end:
+                        dp[end] += prev[end - 1] 
                 else:
                     dp[end] = max(prev[end], dp[end - 1])
-        print(dp)
-        return prev[-2]
-    def longestPalindromeSubseq(self, s: str) -> int:
+       
+        return dp[-1]
+    def longestPalindromeSubseq2(self, s: str) -> int:
             n = len(s)
             dp = [1] * n
-            for j in range(1, n):
-                    pre = dp[j]
-                    for i in range(j-1, -1, -1):
+            for end in range(1, n):
+                    pre = dp[end]
+                    for i in range(end-1, -1, -1):
                         tmp = dp[i]
-                        if s[i] == s[j]:
-                            dp[i] = 2 + pre if i + 1 <= j - 1 else 2
+                        if s[i] == s[end]:
+                            dp[i] = 2 + pre if i + 1 <= end - 1 else 2
                         else:
                             dp[i] = max(dp[i + 1], dp[i])
                         pre = tmp
