@@ -1,5 +1,6 @@
 class Solution:
-    def numDistinct(self, s: str, t: str) -> int:
+    def numDistinct1(self, s: str, t: str) -> int:
+        # top down dp approach
         n = len(s)
         m = len(t)
         
@@ -20,5 +21,26 @@ class Solution:
             return ans
         
         return dp(0, 0)
+    
+    def numDistinct(self, s: str, t: str) -> int:
+        # bottom up dp approach
+        n = len(s)
+        m = len(t)
+        
+        prev = [0] * m + [1]
+        
+        for ind1 in range(n - 1, -1, -1):
+            dp = [0] * m + [1]
+            
+            for ind2 in range(m - 1, -1, -1):
+                if s[ind1] == t[ind2]:
+                    dp[ind2] += prev[ind2 + 1]
+                    
+                dp[ind2] += prev[ind2]
+            
+            prev = dp
+        
+        return dp[0]
+                
             
         
