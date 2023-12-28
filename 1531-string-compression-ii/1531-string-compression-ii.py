@@ -19,7 +19,8 @@ class Solution:
             for i in range(ind, n):
                 if s[i] == s[ind]:
                     freq += 1
-            
+                elif k == 0:
+                    return ans
                 else:
                     k -= 1
                 
