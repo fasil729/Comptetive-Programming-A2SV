@@ -1,12 +1,25 @@
 class Solution:
     def findContentChildren(self, g: List[int], s: List[int]) -> int:
-        g.sort()
-        s.sort()
-        res, i, ind = 0, 0, 0
-        while i < len(g) and ind < len(s):
-            if g[i] <= s[ind]:
-                res += 1
-                i += 1
-            ind += 1
-        return res
+        
+        g = [-greed for greed in g]
+        s = [-coo for coo in s]
+
+        heapq.heapify(g)
+        heapq.heapify(s)
+        ans = 0
+        
+        while s and g:
+            coo = -heapq.heappop(s)
+            child = -heapq.heappop(g)
+            
+            while g and coo < child:
+                child = -heapq.heappop(g)
+                
+            if coo >= child:
+                ans += 1
+        
+        
+        return ans
+            
+
         
