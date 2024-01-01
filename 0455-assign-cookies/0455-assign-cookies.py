@@ -3,7 +3,6 @@ class Solution:
         
         g = [-greed for greed in g]
         s = [-coo for coo in s]
-
         heapq.heapify(g)
         heapq.heapify(s)
         ans = 0
