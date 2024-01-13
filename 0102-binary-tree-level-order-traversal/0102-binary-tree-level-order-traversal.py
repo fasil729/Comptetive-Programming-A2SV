@@ -5,7 +5,7 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+    def levelOrder1(self, root: Optional[TreeNode]) -> List[List[int]]:
         if not root:
             return []
         queue = [root]
@@ -25,6 +25,27 @@ class Solution:
             queue = new_queue
             ans.append(res)
         
+        return ans
+    
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        
+        
+        ans = []
+        
+        
+        def dfs(root, level):
+            if not root:
+                return
+            
+            if level == len(ans):
+                ans.append([root.val])
+            else:
+                ans[level].append(root.val)
+            
+            dfs(root.left, level + 1)
+            dfs(root.right, level + 1)
+            
+        dfs(root, 0)
         return ans
             
                 
