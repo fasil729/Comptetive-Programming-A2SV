@@ -5,16 +5,30 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def insertOrder(self,root,res,pointer):
-        if root!=None:
-            self.res[pointer].append(root.val)
-            self.insertOrder(root.left,self.res,pointer+1)
-            self.insertOrder(root.right,self.res,pointer+1)
-        return self.res
-            
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        self.res = defaultdict(list)
-        pointer = 0
-        self.insertOrder(root,self.res,pointer)
-        return self.res.values()
+        if not root:
+            return []
+        queue = [root]
+        ans = []
+        
+        while queue:
+            new_queue = []
+            res = []
+            for node in queue:
+                res.append(node.val)
+                
+                if node.left:
+                    new_queue.append(node.left)
+                if node.right:
+                    new_queue.append(node.right)
+                    
+            queue = new_queue
+            ans.append(res)
+        
+        return ans
+            
+                
+            
+        
+        
         
