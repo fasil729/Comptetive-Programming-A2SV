@@ -1,5 +1,5 @@
 class Solution:
-    def twoCitySchedCost1(self, costs: List[List[int]]) -> int:
+    def twoCitySchedCost(self, costs: List[List[int]]) -> int:
         n = len(costs) // 2
         
         @cache
@@ -16,7 +16,7 @@ class Solution:
         return dp(0, 0, 0)
     
     
-    def twoCitySchedCost(self, costs: List[List[int]]) -> int:
+    def twoCitySchedCost2(self, costs: List[List[int]]) -> int:
         # greedy approach
         n = len(costs)
         
