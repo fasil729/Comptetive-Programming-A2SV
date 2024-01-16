@@ -1,39 +1,77 @@
 class RandomizedSet:
 
     def __init__(self):
-        # Store the index of each val in self.arr.
+        """
+        NOTES:
+            
+            -> Initializes the RandomizedSet
+            -> each function should works in average O(1) time complexity.
+            
+            i can start with empty list which is constant time comp
+        """
         self.indices = {}
-        # Store all vals.
         self.arr = []
+        
+        
 
     def insert(self, val: int) -> bool:
-        # Return False if val is already present as requested.
-        if val in self.indices: return False
+        """
+        NOTES: 
+            ->  Inserts an item val into the set if not present.
+            Returns true if the item was not present, false otherwise.
         
-        # Append val to the array.
-        # Store its index in the hashmap
-        self.arr.append(val)
-        self.indices[val] = len(self.arr)-1
-        return True
-    
+        check for prescence in the set -> constant
+        add if not present     -> constant
+        
+        
+            
+        """
+        if val not in self.indices:
+            self.indices[val] = len(self.arr)
+            self.arr.append(val)
+            return True
+        
+        return False
+
     def remove(self, val: int) -> bool:
-        # Return False if val is not present as requested.
-        if val not in self.indices: return False
+        """
+            -> Removes an item val from the set if present. Returns true if the                 item was present, false otherwise.
+            e.g [3, 4, 2, 1]  val=3
+        """
+        if val in self.indices:
+            ind = self.indices[val]
+            
+            # swap val to end
+            self.arr[ind] = self.arr[-1]
+            
+            # update the last val indice
+            self.indices[self.arr[-1]] = ind
+            
+            # delete val
+            self.arr.pop()
+            del self.indices[val]
+            
+            return True
         
-        # Get the index of the val that needs to be removed.
-        i = self.indices[val]
+        return False
+            
+            
         
-        # Update the index of arr[-1] in the indices.
-        self.indices[self.arr[-1]] = i
-        
-        # Move the last element to the i th position.
-        self.arr[i] = self.arr[-1]
-        
-        # remove the last element, and remove the index of val
-        self.indices.pop(val)
-        self.arr.pop()
-        
-        return True
 
     def getRandom(self) -> int:
+        """
+             -> Returns a random element from the current set of elements (it's                -> guaranteed that at least one element exists when this method is called). 
+             -> Each element must have the same probability of being returned.
+        """
+        
         return random.choice(self.arr)
+        
+        
+        
+
+
+# Your RandomizedSet object will be instantiated and called as such:
+# obj = RandomizedSet()
+# param_1 = obj.insert(val)
+# param_2 = obj.remove(val)
+# param_3 = obj.getRandom()
