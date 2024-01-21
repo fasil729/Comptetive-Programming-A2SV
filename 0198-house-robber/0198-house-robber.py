@@ -1,5 +1,5 @@
 class Solution:
-    def rob(self, nums: List[int]) -> int:
+    def rob1(self, nums: List[int]) -> int:
         
         n = len(nums)
         
@@ -13,4 +13,18 @@ class Solution:
             return max(dp(ind + 2) + nums[ind], dp(ind + 1))
         
         return dp(0)
+    def rob(self, nums: List[int]) -> int:
+        # bottom up dp approach
+        
+        n = len(nums)
+        first, second = 0, 0
+        
+        for ind in range(n - 1, -1, -1):
+            ans = max(second + nums[ind], first)
+            second = first
+            first = ans
+            
+        
+        return ans
+    
         
