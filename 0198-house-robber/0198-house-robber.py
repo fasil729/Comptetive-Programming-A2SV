@@ -1,17 +1,16 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
         
+        n = len(nums)
+        
         @cache
-        def dp(index):
-            if index >= len(nums):
+        def dp(ind):
+            # top down dp approach
+            if ind >= n:
                 return 0
-            maxi = 0
-            for i in range(index + 2, len(nums)):
-                maxi = max(maxi, dp(i))
             
             
-            return nums[index] + maxi
+            return max(dp(ind + 2) + nums[ind], dp(ind + 1))
         
-        return max(dp(0), dp(1))
-        
+        return dp(0)
         
