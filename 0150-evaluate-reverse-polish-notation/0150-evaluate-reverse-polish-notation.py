@@ -1,17 +1,34 @@
-class Solution(object):
-    from math import trunc
-    def evalRPN(self, tokens):
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
         """
-        :type tokens: List[str]
-        :rtype: int
+        
+        
         """
-        op = ['/', '+', '*','-']
+        
+        operators = ["/", "+", "-", "*"]
         stack = []
-        for operand in tokens:
-            if operand in op :
-                    value = trunc(eval(stack.pop(-2) + operand + stack.pop(-1)))
-                    stack.append(str(value))
-                
+        
+        for token in tokens:
+            
+            if token in operators:
+                first = stack.pop()
+                second = stack.pop()
+                if token == "/":
+                    result = int(second / first)
+                elif token == "-":
+                    result = second - first
+                elif token == "+":
+                    result = second + first
+                else:
+                    result = second * first
+                stack.append(result)
             else:
-                    stack.append(operand)
-        return int(stack.pop())
+                stack.append(int(token))
+                
+        return stack[0]
+        
+        
+        
+        
+        
+        
