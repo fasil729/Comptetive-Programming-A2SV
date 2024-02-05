@@ -2,7 +2,6 @@ class Solution:
     def firstUniqChar(self, s: str) -> int:
         n = len(s)
         visited = Counter(s)
-        print(visited)
         
         for ind in range(n):
             char = s[ind]
