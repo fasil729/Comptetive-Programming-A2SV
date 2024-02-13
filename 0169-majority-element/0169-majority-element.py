@@ -23,6 +23,4 @@ class Solution:
                     return left
                 return right
         return helper(0, len(nums) - 1)
-                
-                        
         
