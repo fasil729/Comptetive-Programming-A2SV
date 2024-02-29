@@ -17,9 +17,11 @@ class Solution:
                 Prev.append(0)
                 if (level + root.val) % 2 == 0:
                     return False
-            elif level % 2 == 0 and (root.val % 2 == 0 or Prev[level] >= root.val):
+            elif (level + root.val) % 2 == 0:
+                    return False
+            elif level % 2 == 0 and Prev[level] >= root.val:
                 return False
-            elif level % 2 != 0 and (root.val % 2 != 0 or Prev[level] <= root.val):
+            elif level % 2 != 0 and Prev[level] <= root.val:
                 return False
             
             Prev[level] = root.val
